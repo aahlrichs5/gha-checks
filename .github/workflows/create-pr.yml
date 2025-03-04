@@ -4,13 +4,13 @@ on:
   workflow_dispatch:
 
 jobs:
-  create-release:
-    name: Create Release Branch
+  create-pr:
+    name: Create Pr
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Create version bump PR to develop
+      - name: Creat PR to main
         run: |
          gh pr create -H alex/pr -B main -t "Automated PR" -b "Create auto PR and run checks"
          gh pr merge --auto -s -d
