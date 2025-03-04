@@ -1,0 +1,22 @@
+name: Check
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches: ['main']
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    name: Run Check
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 'Use Node 20.11.1'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.11.1
