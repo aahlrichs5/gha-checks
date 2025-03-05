@@ -13,6 +13,8 @@ jobs:
         id: pr
         run: echo "branch=${GITHUB_HEAD_REF}" >> $GITHUB_ENV
     
+      - name: Log Branch Name
+        run: echo ${{ steps.pr.outputs.branch }}
         
       - name: Trigger PR Check Workflow
         uses: benc-uk/workflow-dispatch@v1
