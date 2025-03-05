@@ -1,3 +1,3 @@
 # gha-checks
 
-update readme
+update readme2
