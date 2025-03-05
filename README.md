@@ -1,3 +1,3 @@
 # gha-checks
 
-update readme
+PR label to run checks
