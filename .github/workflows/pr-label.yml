@@ -11,15 +11,19 @@ jobs:
     steps:
       - name: Get PR Branch
         id: pr
-        run: echo "branch=${GITHUB_HEAD_REF}" >> $GITHUB_ENV
+        run: echo "BRANCH=${GITHUB_HEAD_REF}" >> $GITHUB_ENV
     
       - name: Log Branch Name
-        run: echo ${{ steps.pr.outputs.branch }}
+        env:
+          BRANCH: ${{ env.BRANCH }}
+        run: echo $BRANCH
         
       - name: Trigger PR Check Workflow
         uses: benc-uk/workflow-dispatch@v1
+        env:
+          BRANCH: ${{ env.BRANCH }}
         with:
           workflow: Check
           repo: ${{ github.repository }}
-          ref: ${{ steps.pr.outputs.branch }}
+          ref: ${{ env.BRANCH }}
           token: ${{ secrets.GITHUB_TOKEN }}
