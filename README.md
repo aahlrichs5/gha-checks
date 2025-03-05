@@ -1,3 +1,3 @@
 # gha-checks
 
-update readme
+This repo uses a PR label to run checks on a PR
