@@ -7,23 +7,5 @@ on:
 jobs:
   trigger-pr-check:
     if: github.event.label.name == 'run-checks'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Get PR Branch
-        id: pr
-        run: echo "BRANCH=${GITHUB_REF}" >> $GITHUB_ENV
-    
-      - name: Log Branch Name
-        env:
-          BRANCH: ${{ env.BRANCH }}
-        run: echo $BRANCH
-        
-      - name: Trigger PR Check Workflow
-        uses: benc-uk/workflow-dispatch@v1
-        env:
-          BRANCH: ${{ env.BRANCH }}
-        with:
-          workflow: Check
-          repo: ${{ github.repository }}
-          ref: ${{ env.BRANCH }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+    name: Trigger PR Check Workflow
+    uses: ./.github/workflows/check.yml
