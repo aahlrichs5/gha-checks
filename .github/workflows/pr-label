@@ -1,0 +1,22 @@
+name: Run Checks
+
+on:
+  pull_request:
+    types: [ labeled ]
+
+jobs:
+  trigger-pr-check:
+    if: github.event.label.name == 'run-checks'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get PR Merge Branch
+        id: pr
+        run: echo "##[set-output name=merge_branch;]$(echo ${GITHUB_REF})"
+        
+      - name: Trigger PR Check Workflow
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: Check
+          repo: ${{ github.repository }}
+          ref: ${{ steps.pr.outputs.merge_branch }}
+          token: ${{ secrets.GITHUB_TOKEN }}
