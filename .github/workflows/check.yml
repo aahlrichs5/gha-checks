@@ -8,9 +8,11 @@ on:
       - main
   pull_request:
     branches: ['main']
+    types: [ labeled ]
 
 jobs:
   check:
+    if: github.event.label.name == 'run-checks'
     runs-on: ubuntu-latest
     name: Run Check
 
