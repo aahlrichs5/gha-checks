@@ -1,4 +1,4 @@
-name: Check
+name: Additional Check
 
 on:
   workflow_call:
@@ -11,10 +11,10 @@ on:
     types: [ labeled ]
 
 jobs:
-  check:
+  additional-check:
     if: github.event.label.name == 'run-checks'
     runs-on: ubuntu-latest
-    name: Run Check
+    name: Run Additional Check
 
     steps:
       - uses: actions/checkout@v4
@@ -25,7 +25,7 @@ jobs:
           node-version: 20.11.1
 
   delete-labels:
-    needs: check
+    needs: additional-check
     if: always()
     runs-on: ubuntu-latest
     steps:
@@ -44,5 +44,5 @@ jobs:
               });
               console.log("Label removed successfully");
             } catch (error) {
-              console.log("Error removing label");
+            console.log("Error removing label");
             }
