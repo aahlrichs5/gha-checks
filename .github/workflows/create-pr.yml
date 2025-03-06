@@ -12,7 +12,8 @@ jobs:
 
       - name: Creat PR to main
         run: |
-         gh pr create -H alex/pr -B main -t "Automated PR" -b "Create auto PR and run checks" -l run-checks
+         gh pr create -H alex/pr -B main -t "Automated PR" -b "Create auto PR and run checks"
+         gh pr edit --add-label "run-checks"
          gh pr merge --auto -s -d
         env:
          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
