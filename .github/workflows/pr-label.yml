@@ -6,6 +6,6 @@ on:
 
 jobs:
   trigger-pr-check:
-    if: github.event.label.name == 'run-checks'
+    if: github.event.label.name == 'run-checks2'
     name: Trigger PR Check Workflow
     uses: ./.github/workflows/check.yml
