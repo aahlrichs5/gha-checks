@@ -23,3 +23,21 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20.11.1
+
+  delete-labels:
+    needs: check
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete label cypress
+        if: contains(github.event.pull_request.labels.*.name, 'run-checks')
+        uses: actions/github-script@v7.0.1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.issues.removeLabel({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: ['run-checks']
+            })
