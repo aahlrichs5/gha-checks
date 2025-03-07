@@ -8,7 +8,7 @@ on:
       - main
   pull_request:
     branches: ['main']
-    types: [ labeled, synchronize ]
+    types: [ labeled, synchronize, opened ]
 
 jobs:
   check:
