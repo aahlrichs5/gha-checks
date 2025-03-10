@@ -14,8 +14,8 @@ jobs:
         run: |
           gh pr create -H alex/pr -B main -t "Automated PR" -b "Create auto PR and run checks"
           gh pr merge --auto -s -d
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
       - name: Empty Commit
         run: |
