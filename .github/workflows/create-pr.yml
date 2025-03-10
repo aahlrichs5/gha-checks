@@ -26,6 +26,7 @@ jobs:
 
       - name: Create non-empty commit
         run: |
+          echo "This is a non-empty commit" > non_empty_file.txt
           git add non_empty_file.txt
           git commit -m "Add non-empty commit"
           git push origin alex/pr
