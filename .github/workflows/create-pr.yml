@@ -17,7 +17,6 @@ jobs:
           
       - name: Empty Commit and PR
         run: |
-          git checkout -b alex/pr
           git commit --allow-empty -m "Trigger Checks"
           git push origin alex/pr
           gh pr create -H alex/pr -B main -t "Automated PR" -b "Create auto PR and run checks"
