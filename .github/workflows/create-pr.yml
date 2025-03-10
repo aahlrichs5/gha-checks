@@ -9,11 +9,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-          
-      - name: Empty Commit
+
+      - name: Set up Git user for commits
         run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "github-actions@github.com"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+      - name: Empty Commit and PR
+        run: |
           git checkout -b alex/pr
           git commit --allow-empty -m "Trigger Checks"
           git push origin alex/pr
@@ -21,3 +24,9 @@ jobs:
           gh pr merge --auto -s -d
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create non-empty commit
+        run: |
+          git add non_empty_file.txt
+          git commit -m "Add non-empty commit"
+          git push origin alex/pr
