@@ -19,6 +19,8 @@ jobs:
         
       - name: Empty Commit
         run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "github-actions@github.com"
           git checkout alex/pr
           git commit --allow-empty -m "Trigger Checks"
           git push origin alex/pr
