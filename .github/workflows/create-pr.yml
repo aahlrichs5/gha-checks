@@ -9,20 +9,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Create PR to main
-        run: |
-          gh pr create -H alex/pr -B main -t "Automated PR" -b "Create auto PR and run checks"
-          gh pr merge --auto -s -d
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        
+          
       - name: Empty Commit
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "github-actions@github.com"
-          git checkout alex/pr
+          git checkout -b alex/pr
           git commit --allow-empty -m "Trigger Checks"
           git push origin alex/pr
+          gh pr create -H alex/pr -B main -t "Automated PR" -b "Create auto PR and run checks"
+          gh pr merge --auto -s -d
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
