@@ -12,11 +12,12 @@ jobs:
 
       - name: Create PR to main
         run: |
-          gh pr create -H alex/pr -B main -t "Automated PR" -b "Create auto PR and run checks" --draft
+          gh pr create -H alex/pr -B main -t "Automated PR" -b "Create auto PR and run checks"
+          gh pr merge --auto -s -d
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
-      - name: Create Branch and Empty Commit
+      - name: Empty Commit
         run: |
           git checkout alex/pr
           git commit --allow-empty -m "Trigger Checks"
