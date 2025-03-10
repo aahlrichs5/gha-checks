@@ -8,7 +8,6 @@ on:
       - main
   pull_request:
     branches: ['main']
-    types: [ opened, reopened, synchronize, ready_for_review ]
 
 jobs:
   check:
